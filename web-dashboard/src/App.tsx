@@ -82,7 +82,7 @@ function AddressLabel({ lat, lng }: { lat: number, lng: number }) {
         clearTimeout(timeoutId);
         setAddress(data.display_name || 'Address not found');
       })
-      .catch((err) => {
+      .catch(() => {
         clearTimeout(timeoutId);
         setAddress(`Lat: ${Number(lat).toFixed(5)}, Lng: ${Number(lng).toFixed(5)} (Offline)`);
       });
