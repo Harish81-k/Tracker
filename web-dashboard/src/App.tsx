@@ -116,7 +116,11 @@ function App() {
 
   // Authenticate (Test User)
   useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+    let API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+    if (!API_URL.endsWith('/api/v1') && !API_URL.endsWith('/api/v1/')) {
+        API_URL = API_URL.replace(/\/$/, '') + '/api/v1';
+    }
+
     fetch(`${API_URL}/auth/token/`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -131,7 +135,10 @@ function App() {
   useEffect(() => {
     if (!token) return;
 
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+    let API_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000/api/v1';
+    if (!API_URL.endsWith('/api/v1') && !API_URL.endsWith('/api/v1/')) {
+        API_URL = API_URL.replace(/\/$/, '') + '/api/v1';
+    }
 
     const fetchData = async () => {
       try {
